@@ -97,11 +97,11 @@ if (isset($_POST['login'])) {
             // $APP_URL = APP_URL;
             $email = $user['acct_email'];
 
-            // $message = $sendMail->LoginMsg($full_name, $device, $ipAddress, $nowDate, $APP_NAME, WEB_URL, $BANK_PHONE);
+            $message = $sendMail->LoginMsg($full_name, $device, $ipAddress, $nowDate, $APP_NAME, WEB_URL, $BANK_PHONE);
 
 
-            // $subject = "Login Notification";
-            // $email_message->send_mail($email, $message, $subject);
+            $subject = "Login Notification";
+            $email_message->send_mail($email, $message, $subject);
           }
 
           if (true) {
