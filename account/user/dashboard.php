@@ -473,7 +473,10 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
                             </div>
                         </div>
                     </div>
-
+                    
+                    <?php
+                    include_once('layouts/fixedFooter.php')
+                    ?>
 
                     <?php
                     include_once('layouts/footer.php')

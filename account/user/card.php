@@ -405,7 +405,6 @@ if($acct_stat != 'active'){
 
 
 
-
 <?php
 include_once("layouts/cardfooter.php");
 ?>

@@ -1,11 +1,11 @@
 <?php
 ob_start();
 session_start();
-require_once ('../session.php');
+require_once('../session.php');
 require_once("../include/loginFunction.php");
 //require_once("../include/userFunction.php");
 require_once("../include/userClass.php");
-if(!$_SESSION['acct_no']) {
+if (!$_SESSION['acct_no']) {
     header("location:../login.php");
     exit;
 }
@@ -27,11 +27,11 @@ $trans_limit_max = $page['trans_limit_max'];
 
 
 
-$viesConn="SELECT * FROM users WHERE acct_no = :acct_no";
+$viesConn = "SELECT * FROM users WHERE acct_no = :acct_no";
 $stmt = $conn->prepare($viesConn);
 
 $stmt->execute([
-    ':acct_no'=>$_SESSION['acct_no']
+    ':acct_no' => $_SESSION['acct_no']
 ]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -44,14 +44,14 @@ $acct_stat = $row['acct_status'];
 $sql = "SELECT * FROM temp_trans WHERE acct_id =:acct_id ORDER BY wire_id DESC LIMIT 1";
 $stmt = $conn->prepare($sql);
 $stmt->execute([
-    'acct_id'=>$user_id
+    'acct_id' => $user_id
 ]);
 $temp_trans = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 $limitRemain = $row['limit_remain'];
 
-$fullName = $row['firstname']." ".$row['lastname'];
+$fullName = $row['firstname'] . " " . $row['lastname'];
 $email = $row['acct_email'];
 $currency = currency($row);
 
@@ -113,16 +113,16 @@ $sendMail = new emailMessage();
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <style>
-    @media screen and (max-width: 600px) {
-        .layout-visible {
-            visibility: hidden;
-            clear: both;
-            float: left;
-            margin: 10px auto 5px 20px;
-            width: 28%;
-            display: none;
+        @media screen and (max-width: 600px) {
+            .layout-visible {
+                visibility: hidden;
+                clear: both;
+                float: left;
+                margin: 10px auto 5px 20px;
+                width: 28%;
+                display: none;
+            }
         }
-    }
     </style>
 
 </head>
@@ -178,46 +178,46 @@ $sendMail = new emailMessage();
                     </a>
                     <div class="dropdown-menu p-0 position-absolute" aria-labelledby="messageDropdown">
                         <?php
-                    $acct_id = userDetails('id');
+                        $acct_id = userDetails('id');
 
-                    $sql2 ="SELECT * FROM loan WHERE acct_id =:acct_id ORDER BY loan_id  DESC LIMIT 3";
-                    $wire = $conn->prepare($sql2);
-                    $wire->execute([
-                        'acct_id'=>$acct_id
-                    ]);
+                        $sql2 = "SELECT * FROM loan WHERE acct_id =:acct_id ORDER BY loan_id  DESC LIMIT 3";
+                        $wire = $conn->prepare($sql2);
+                        $wire->execute([
+                            'acct_id' => $acct_id
+                        ]);
 
 
 
-                    while ($result = $wire->fetch(PDO::FETCH_ASSOC)){
-                        $transStatus = loanStatus($result);
-                        $loan_message = $result['loan_message'];
+                        while ($result = $wire->fetch(PDO::FETCH_ASSOC)) {
+                            $transStatus = loanStatus($result);
+                            $loan_message = $result['loan_message'];
                         ?>
-                        <div class="">
-                            <a class="dropdown-item">
-                                <div class="">
+                            <div class="">
+                                <a class="dropdown-item">
+                                    <div class="">
 
-                                    <div class="media">
-                                        <div class="user-img">
-                                            <div class="avatar avatar-xl">
-                                                <img src="../assets/profile/<?= $row['image']?>" width="100%" alt=""
-                                                    style="border-radius: 50%">
+                                        <div class="media">
+                                            <div class="user-img">
+                                                <div class="avatar avatar-xl">
+                                                    <img src="../assets/profile/<?= $row['image'] ?>" width="100%" alt=""
+                                                        style="border-radius: 50%">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="">
+                                                    <h5 class="usr-name text-info text-uppercase"><?= $transStatus ?></h5>
+                                                    <p class="msg-title text-danger"><?= $currency . $result['amount'] ?></p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="media-body">
-                                            <div class="">
-                                                <h5 class="usr-name text-info text-uppercase"><?= $transStatus?></h5>
-                                                <p class="msg-title text-danger"><?= $currency.$result['amount'] ?></p>
-                                            </div>
-                                        </div>
+
                                     </div>
-
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
 
                         <?php
-                    }
-                    ?>
+                        }
+                        ?>
                     </div>
                 </li>
 
@@ -233,55 +233,55 @@ $sendMail = new emailMessage();
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
                         <?php
-                    $acct_id = userDetails('id');
+                        $acct_id = userDetails('id');
 
-                    $sql="SELECT * FROM transactions LEFT JOIN users ON transactions.user_id =users.id WHERE transactions.user_id =:acct_id order by transactions.trans_id DESC LIMIT 3";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute([
-                        'acct_id'=>$acct_id
-                    ]);
-                    $sn=1;
-                    while ($seed = $stmt->fetch(PDO::FETCH_ASSOC)){
-                        $transStatus = depositStatus($row);
+                        $sql = "SELECT * FROM transactions LEFT JOIN users ON transactions.user_id =users.id WHERE transactions.user_id =:acct_id order by transactions.trans_id DESC LIMIT 3";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->execute([
+                            'acct_id' => $acct_id
+                        ]);
+                        $sn = 1;
+                        while ($seed = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $transStatus = depositStatus($row);
 
-                        if($seed['trans_type'] === '1'){
-                            $trans_type = "<span class='text-success'>Credit [Alert]</span>";
-                            $trans_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-                        }else if($seed['trans_type']=== '2'){
-                            $trans_type = "<span class='text-danger'>Debit [Alert]</span>";
-                            $trans_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
-                        }
+                            if ($seed['trans_type'] === '1') {
+                                $trans_type = "<span class='text-success'>Credit [Alert]</span>";
+                                $trans_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                            } else if ($seed['trans_type'] === '2') {
+                                $trans_type = "<span class='text-danger'>Debit [Alert]</span>";
+                                $trans_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+                            }
 
 
 
                         ?>
 
-                        <div class="notification-scroll">
-                            <div class="dropdown-item">
-                                <div class="media ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="feather feather-activity">
-                                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                                    </svg>
-                                    <div class="media-body">
-                                        <div class="data-info">
-                                            <h6 class=""><?=$trans_type ?></h6>
-                                            <p class=""><?= $currency.$seed['amount']?></p>
-                                        </div>
+                            <div class="notification-scroll">
+                                <div class="dropdown-item">
+                                    <div class="media ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-activity">
+                                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                        </svg>
+                                        <div class="media-body">
+                                            <div class="data-info">
+                                                <h6 class=""><?= $trans_type ?></h6>
+                                                <p class=""><?= $currency . $seed['amount'] ?></p>
+                                            </div>
 
-                                        <div class="icon-status">
-                                            <?= $trans_icon ?>
+                                            <div class="icon-status">
+                                                <?= $trans_icon ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
-                        </div>
-
                         <?php
-                    }
-                    ?>
+                        }
+                        ?>
                     </div>
                 </li>
 
@@ -300,7 +300,7 @@ $sendMail = new emailMessage();
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">
-                                <img src="../assets/profile/<?=$row['image']?>" class="img-fluid mr-2" alt="avatar">
+                                <img src="../assets/profile/<?= $row['image'] ?>" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
                                     <h5><?= $fullName ?></h5>
                                     <p><?= $row['acct_type'] ?></p>
@@ -360,14 +360,14 @@ $sendMail = new emailMessage();
                 <div class="profile-info">
                     <figure class="user-cover-image"></figure>
                     <div class="user-info" aria-expanded="true">
-                        <img src="../assets/profile/<?= $row['image']?>" alt="avatar">
+                        <img src="../assets/profile/<?= $row['image'] ?>" alt="avatar">
                         <h5><?= $fullName ?></h5>
                         <p class=""><?= $row['acct_type'] ?></p>
                     </div>
                 </div>
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample">
-                    <li class="menu <?php active('dashboard.php');?>">
+                    <li class="menu <?php active('dashboard.php'); ?>">
                         <a href="./dashboard.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -383,7 +383,7 @@ $sendMail = new emailMessage();
                         </a>
                     </li>
 
-                    <li class="menu <?php active('deposit.php');?>">
+                    <li class="menu <?php active('deposit.php'); ?>">
                         <a href="./deposit.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -399,7 +399,7 @@ $sendMail = new emailMessage();
                         </a>
                     </li>
 
-                    <li class="menu <?php active('domestic-transfer.php');?> ">
+                    <li class="menu <?php active('domestic-transfer.php'); ?> ">
                         <a href="./domestic-transfer.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -416,7 +416,7 @@ $sendMail = new emailMessage();
                         </a>
                     </li>
 
-                    <li class="menu <?php active('wire-transfer.php');?>">
+                    <li class="menu <?php active('wire-transfer.php'); ?>">
                         <a href="./wire-transfer.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -434,7 +434,7 @@ $sendMail = new emailMessage();
                         </a>
                     </li>
 
-                    <li class="menu <?php active('card.php');?>">
+                    <li class="menu <?php active('card.php'); ?>">
                         <a href="./card.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -450,7 +450,7 @@ $sendMail = new emailMessage();
                         </a>
                     </li>
 
-                    <li class="menu <?php active('loan.php');?>">
+                    <li class="menu <?php active('loan.php'); ?>">
                         <a href="./loan.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -504,7 +504,7 @@ $sendMail = new emailMessage();
                         </ul>
                     </li>
 
-                    <li class="menu <?php active('account-manager.php');?>">
+                    <li class="menu <?php active('account-manager.php'); ?>">
                         <a href="./account-manager.php" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

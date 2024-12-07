@@ -158,5 +158,9 @@ require_once("./userPinfunction.php");
             </div>
 
             <?php
+            include_once('layouts/fixedFooter.php')
+            ?>
+
+            <?php
             include_once("layouts/footer.php");
             ?>

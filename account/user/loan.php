@@ -135,6 +135,9 @@ if(isset($_POST['loan-submit'])){
 
                 </div>
             </div>
+            <?php
+            include_once('layouts/fixedFooter.php')
+            ?>
 
             <?php
             include_once("layouts/footer.php");

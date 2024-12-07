@@ -190,10 +190,53 @@ $cardCheck = $cardstmt->fetch(PDO::FETCH_ASSOC);
                 display: none;
             }
         }
+
+        .fixed-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #007bff;
+            /* Blue background */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            color: #fff;
+            /* White text */
+        }
+
+        .fixed-footer .footer-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .fixed-footer .footer-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            /* White text */
+            font-size: 12px;
+        }
+
+        .fixed-footer .footer-link svg {
+            margin-bottom: 5px;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .fixed-footer {
+                display: none;
+                /* Hide on larger screens */
+            }
+        }
     </style>
-
-
-
 
     <!-- Chatway -->
     <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=8h5mfCgrzkGJ"></script>

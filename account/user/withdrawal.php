@@ -183,7 +183,7 @@ if(isset($_POST['withdraw'])) {
                                 </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <button class="btn btn-primary mb-2 mr-2" name="deposit" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Deposit</button>
+                                                <button class="btn btn-primary mb-2 mr-2" name="deposit" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Request</button>
                                             </div>
                                         </div>
                                 </form>
@@ -223,7 +223,9 @@ if(isset($_POST['withdraw'])) {
         </div>
     </div>
 
-
+    <?php
+        include_once('layouts/fixedFooter.php')
+    ?>
     <?php
     include_once('layouts/footer.php')
     ?>
