@@ -226,7 +226,7 @@ $cardCheck = $cardstmt->fetch(PDO::FETCH_ASSOC);
         .fixed-footer .footer-link svg {
             margin-bottom: 5px;
             color: #fff;
-            width: 20px;
+            width: 25px;
             height: 20px;
         }
 
