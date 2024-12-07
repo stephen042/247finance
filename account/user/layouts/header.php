@@ -196,7 +196,7 @@ $cardCheck = $cardstmt->fetch(PDO::FETCH_ASSOC);
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #007bff;
+            background-color: #354FCF;
             /* Blue background */
             display: flex;
             justify-content: space-around;
