@@ -167,7 +167,11 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
                         </div>
                         <div class="wallet-balance">
                             <p>Balance</p>
+                            <?php if($acct_balance > 1000){ ?>
                             <h5 class=""><span class="w-currency"><?php echo $currency ?></span><?php echo number_format($acct_balance, 2, '.', ','); ?></h5>
+                            <?php }else { ?>
+                                <h5 class="text-danger"><span class="w-currency"><?php echo $currency ?></span><?php echo number_format($acct_balance, 2, '.', ','); ?></h5>
+                            <?php } ?>
                         </div>
                         <?php
                         if ($row['loan_balance'] > 0) {
@@ -223,7 +227,7 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
                                 </div>
                                 <div class="info-detail-2">
                                     <p>Transfer Limit Remain</p>
-                                    <p class=""><span class="w-currency text-dark"><?= $currency ?></span> <span class="bill-amount text-dark"><?= $limitRemain ?> </span></p>
+                                    <p class=""><span class="w-currency text-danger"><?= $currency ?></span> <span class="bill-amount text-dark"><?= $limitRemain ?> </span></p>
                                 </div>
 
 

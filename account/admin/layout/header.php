@@ -134,12 +134,12 @@ $adminName = $row['firstname']." ".$row['lastname'];
 
             <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
              <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="./uploads/<?=$page['image']?>" alt="admin-profile" class="img-fluid">
+                    <img src="../../assets/profile/<?=$page['image']?>" alt="admin-profile" class="img-fluid">
                 </a> 
                 <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
                     <div class="user-profile-section">
                         <div class="media mx-auto">
-                            <img src="./uploads/<?=$page['image']?>" class="img-fluid mr-2" alt="avatar">
+                            <img src="../../assets/profile/<?=$page['image']?>" class="img-fluid mr-2" alt="avatar">
                             <div class="media-body">
                                 <h5><?=$adminName?></h5>
                                 <p>Admin</p>
@@ -266,7 +266,7 @@ $adminName = $row['firstname']." ".$row['lastname'];
                     </li>
 
                     <li>
-                        <a href="./funduser.php"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span> Credit/Deibt User </a>
+                        <a href="./funduser.php"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span> Credit/Debit User </a>
                     </li>
                     <li>
                         <a href="./transfer.php"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span> Wire Transfer User </a>
