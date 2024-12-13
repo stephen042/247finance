@@ -22,7 +22,7 @@ class message
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         //SMTP Settings (use default cpanel email account)
         $mail->isSMTP();
-        $mail->Host = "server172.web-hosting.com"; //
+        $mail->Host = "smtp.hostinger.com"; //
         $mail->SMTPAuth = true;
         $mail->Username = "support@247trust.live"; // Default cpanel email account
         $mail->Password = '247Trust.'; // Default cpanel email password
