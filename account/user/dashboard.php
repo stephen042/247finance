@@ -151,7 +151,7 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
             </div>
             <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12 layout-spacing">
 
-                <div class="widget widget-account-invoice-three">
+                <div class="widget widget-account-invoice-three" >
 
                     <div class="widget-heading">
                         <div class="wallet-usr-info">
@@ -195,7 +195,7 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
 
 
                             <p>
-                                <a class="btn btn-primary btn-sm col-12" data-toggle="modal" data-target="#exampleModal">Deposit</a>
+                                <a class="btn btn-sm col-12 text-white" data-toggle="modal" data-target="#exampleModal" style="background-color: #354FCD;">Deposit</a>
                             </p>
                         </div>
 
@@ -204,7 +204,7 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
                                     <polyline points="18 15 12 9 6 15"></polyline>
                                 </svg></span>
                             <p>
-                                <a href="./wire-transfer.php" class="btn btn-primary btn-sm col-12">Transfer </a>
+                                <a href="./wire-transfer.php" class="btn  btn-sm col-12 text-white" style="background-color: #354FCD;">Transfer </a>
 
                             </p>
                         </div>
@@ -282,8 +282,8 @@ unset($_SESSION['wire_transfer'], $_SESSION['dom_transfer']);
                             </div>
 
                             <div class="inv-action">
-                                <a href="./credit-debit_transaction.php" class="btn btn-outline-primary bg-primary text-white ">View Transactions</a>
-                                <a href="./wire-transfer.php" class="btn btn-outline-primary bg-primary text-white">Wire Transfer</a>
+                                <a href="./credit-debit_transaction.php" class="btn btn-outline-primary text-white" style="background-color: #354FCD;">View Transactions</a>
+                                <a href="./wire-transfer.php" class="btn btn-outline-primary text-white" style="background-color: #354FCD;">Wire Transfer</a>
                             </div>
                         </div>
                     </div>
