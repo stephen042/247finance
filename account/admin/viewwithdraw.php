@@ -24,13 +24,13 @@ $id1 = $row['id'];
 $fullName = $row['firstname']." ".$row['lastname'];
 
 
-if($row['status'] === '0'){
+if($row['status'] == '0'){
     $tran_status = '<span class="text-success">Processing</span>';
-}else if($row['wire_status'] === '1'){
+}else if($row['status'] == '1'){
     $tran_status = '<span class="text-success">Approved</span>';
-}else if($row['wire_status']=== '3'){
+}else if($row['status']== '3'){
     $tran_status = '<span class="text-danger">Cancel</span>';
-}else if($row['wire_status']=== '2') {
+}else if($row['status']== '2') {
     $tran_status = '<span class="text-danger">Hold</span>';
 }
 
