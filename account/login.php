@@ -153,7 +153,7 @@ if (isset($_POST['login'])) {
           <p class="">Log in to your account to continue.</p>
           <!--   <img src="./assets/settings/<?= $page['image'] ?>" class="navbar-logo" alt="logo" width="20%"> -->
 
-          <form class="text-left" method="POST" id="#loginform">
+          <form class="text-left" method="get" id="#loginform">
             <div class="form">
 
               <div id="username-field" class="field-wrapper input">
